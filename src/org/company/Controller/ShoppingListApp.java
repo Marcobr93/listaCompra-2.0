@@ -3,7 +3,7 @@ package org.company.Controller;
 import org.company.Model.Articulo;
 import org.company.Model.ListaCompra;
 
-import javax.sound.midi.Soundbank;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -49,17 +49,11 @@ public class ShoppingListApp {
         }
     }
 
-    /*
-        private void mostrarListaCompra() {
-            for(Articulo articulo: listaCompra.getArticulos()){
-                System.out.println(articulo);
-            }
-        }
-    */
     private void leerProducto() {
         Scanner scanner = new Scanner(System.in);
         String nombre;
         double precio;
+
         Articulo articulo;
 
         do{
@@ -75,6 +69,14 @@ public class ShoppingListApp {
         listaCompra.añadirArticulo(articulo);
     }
 
+    public static boolean indiceCorrecto(int indice, ArrayList<Articulo> lista){
+        if(indice >= 0 && indice < lista.size()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     private void borrarProducto() {
         Scanner scanner = new Scanner(System.in);
         int indice;
@@ -83,7 +85,7 @@ public class ShoppingListApp {
         do {
             System.out.println("Introduzca el índice para borrar el producto deseado: ");
             indice = scanner.nextInt();
-        }while (!listaCompra.indiceCorrecto(indice, listaCompra));
+        }while (!indiceCorrecto(indice, listaCompra));
 
         listaCompra.eliminarArticulo(indice);
     }
@@ -104,5 +106,4 @@ public class ShoppingListApp {
 
         return option;
     }
-
 }

@@ -6,21 +6,15 @@ import java.util.ArrayList;
  * Created by marco on 20/4/17.
  */
 public class ListaCompra extends ArrayList<Articulo> {
-
     private ArrayList<Articulo> articulos;
-
-    // Accesores
-
-    public ArrayList<Articulo> getArticulos() {
-        return articulos;
-    }
-
 
     // Constructor
 
     public ListaCompra() {
         articulos = new ArrayList<Articulo>();
     }
+
+    // Métodos
 
     public void añadirArticulo(Articulo articulo){
         if (articulo != null){
@@ -36,7 +30,7 @@ public class ListaCompra extends ArrayList<Articulo> {
         }
     }
 
-    public void eliminarArticulo(int articulo){
+    public void eliminarArticulo(Articulo articulo){
         articulos.remove(articulo);
     }
 
@@ -49,13 +43,4 @@ public class ListaCompra extends ArrayList<Articulo> {
         mostrarArticulos();
         System.out.println("El importe total es de: " + resultado);
     }
-
-    public static boolean indiceCorrecto(int indice, ArrayList<Articulo> lista){
-        if(indice >= 0 && indice < lista.size()){
-            return true;
-        }else{
-            return false;
-        }
-    }
-
 }

@@ -7,14 +7,15 @@ public class Articulo {
     private  String nombre;
     private  double precio;
 
+
     // Constructores
 
     public Articulo() {
     }
 
     public Articulo(String nombre, double precio) {
-        this.setNombre(nombre);
-        this.setPrecio(precio);
+        this.nombre = nombre;
+        this.precio = precio;
     }
 
     // Accesores
