@@ -31,15 +31,15 @@ public class ShoppingListApp {
 
                 case 2:
                     // Borrar compra
-
+                    borrarProducto();
                     break;
                 case 3:
                     // Mostar lista de la compra
-                    listaCompra.showArticulos();
+                    listaCompra.mostrarArticulos();
                     break;
                 case 4:
                     // Consultar importe total
-
+                    listaCompra.consultarImporte();
                     break;
                 case 5:
                     // Salir
@@ -48,13 +48,14 @@ public class ShoppingListApp {
             }
         }
     }
-/*
-    private void mostrarListaCompra() {
-        for(Articulo articulo: listaCompra.getArticulos()){
-            System.out.println(articulo);
+
+    /*
+        private void mostrarListaCompra() {
+            for(Articulo articulo: listaCompra.getArticulos()){
+                System.out.println(articulo);
+            }
         }
-    }
-*/
+    */
     private void leerProducto() {
         Scanner scanner = new Scanner(System.in);
         String nombre;
@@ -63,15 +64,28 @@ public class ShoppingListApp {
 
         do{
             System.out.println("Nombre del artículo: ");
-            nombre = scanner.nextLine();
+            nombre = scanner.nextLine().trim().replaceAll("\\s+"," ");
         }while (nombre.equals(""));
 
-
-        System.out.println("Precio del artículo: ");
-        precio = scanner.nextDouble();
-
+        do{
+            System.out.println("Precio del artículo: ");
+            precio = scanner.nextDouble();
+        }while (precio <= 0);
         articulo = new Articulo(nombre, precio);
         listaCompra.añadirArticulo(articulo);
+    }
+
+    private void borrarProducto() {
+        Scanner scanner = new Scanner(System.in);
+        int indice;
+        listaCompra.mostrarArticulos();
+
+        do {
+            System.out.println("Introduzca el índice para borrar el producto deseado: ");
+            indice = scanner.nextInt();
+        }while (!listaCompra.indiceCorrecto(indice, listaCompra));
+
+        listaCompra.eliminarArticulo(indice);
     }
 
     private int showMenu(){
